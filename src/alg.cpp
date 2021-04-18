@@ -21,7 +21,7 @@ int prior(char ch) {
     }
 }
 std::string infx2pstfx(std::string inf) {
-std::string pfx;
+    std::string pfx;
     int i = 0;
     char ch = inf[i];
     char top = 0;
