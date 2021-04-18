@@ -1,4 +1,5 @@
 // Copyright 2021 NNTU-CS
+#include <string>
 #include <iostream>
 #include "tstack.h"
 
