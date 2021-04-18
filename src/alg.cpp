@@ -1,7 +1,7 @@
 // Copyright 2021 NNTU-CS
 #include <string>
 #include "tstack.h"
-using namespace std;
+
 
 int prior(char ch)
 {
@@ -16,17 +16,17 @@ default: return -1;
 }
 }
 
-string infx2pstfx(string inf) {
-string pfx;
+std::string infx2pstfx( std::string inf) {
+std::string pfx;
 int i = 0;
 char ch = inf[i];
 char top = 0;
 TStack <char> stackCh;
 while (ch) {
-int prior;
-prior = prior(ch);
+int prioritet;
+prioritet = prior(ch);
 if (prior > -1) {
-if ((prior == 0 || prior > prior(top) ||
+if ((prioritet == 0 || prioritet > prior(top) ||
 stackCh.isEmpty()) && ch != ')') {
 if (stackCh.isEmpty())
 top = ch;
@@ -41,7 +41,7 @@ stackCh.pop();
 if (stackCh.isEmpty())
 top = 0;
 } else {
-while (!stackCh.isEmpty() && prior(stackCh.get()) >= prior) {
+while (!stackCh.isEmpty() && prior(stackCh.get()) >= prioritet) {
 pfx.push_back(stackCh.get());
 pfx.push_back(' ');
 stackCh.pop();
@@ -76,7 +76,7 @@ int calculator(int k1, int k2, char pst)
     }
 }
 
-int eval(string pst) {
+int eval(std::string pst) {
      TStack<int> stack2;
     for (int i = 0; i < pst.size(); i++)
     {
