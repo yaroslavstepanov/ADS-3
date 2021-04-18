@@ -92,5 +92,5 @@ int eval(std::string pst) {
         stack2.push(first - second);
     }
   }
-  return stack.get();
+  return stack2.get();
 }
