@@ -32,7 +32,7 @@ std::string pfx;
         int priority;
         priority = prior(ch);
 
-        if (prior > -1) {
+        if (priority > -1) {
             if ((priority == 0 || priority > prior(top) ||
                 stackChar.isEmpty()) && ch != ')') {
                 if (stackChar.isEmpty())
