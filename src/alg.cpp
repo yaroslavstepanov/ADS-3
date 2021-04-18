@@ -3,7 +3,6 @@
 #include <iostream>
 #include "tstack.h"
 
-
 int prior(char ch) {
     switch (ch) {
     case '(':
@@ -22,7 +21,6 @@ int prior(char ch) {
         return -1;
     }
 }
-
 std::string infx2pstfx(std::string inf) {
 std::string pfx;
     int i = 0;
@@ -75,40 +73,24 @@ std::string pfx;
     return pfx;
 }
 
-int calc(int k1, int k2, char pst)
-{
-    switch (pst)
-    {
-    case '+': return k1 + k2;
-    case '-': return k1 - k2;
-    case '*': return k1 * k2;
-    case '/': return k1 / k2;
-    default: return -1;
+int eval(std::string pst) {
+  std::string tstr;
+  TStack<int> stack2;
+  for (int i = 0; i < pst.length(); i++) {
+    if (pst[i] >= '0' && pst[i] <= '9') {
+      tstr = pst[i];
+      stack2.push(pst[i] - '0');
+    } else if (pst[i] != ' ') {
+      int second = stack2.get();
+      stack2.pop();
+      int first = stack2.get();
+      stack2.pop();
+      if (pst[i] == '*') stack2.push(first * second);
+      else if (pst[i] == '/') stack2.push(first / second);
+      else if (pst[i] == '+') stack2.push(first + second);
+      else
+        stack2.push(first - second);
     }
-}
-
-int eval(std::string pst)
-{
-    TStack<int> stack2;
-    for (int i = 0; i < pst.size(); i++)
-    {
-        char ch = pst[i];
-        int priority = prior(ch);
-
-        if (priority == -1)
-            stack2.push(ch - 48);
-        else
-        {
-            int  k1 = stack2.get();
-            stack2.pop();
-
-            int k2 = stack2.get();
-            stack2.pop();
-
-            int res = calc(k2, k1, ch);
-            stack2.push(res);
-        }
-
-    }
-    return stack2.get();
+  }
+  return stack.get();
 }
