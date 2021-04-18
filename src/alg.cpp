@@ -25,7 +25,7 @@ TStack <char> stackCh;
 while (ch) {
 int prioritet;
 prioritet = prior(ch);
-if (prior > -1) {
+if (prioritet > -1) {
 if ((prioritet == 0 || prioritet > prior(top) ||
 stackCh.isEmpty()) && ch != ')') {
 if (stackCh.isEmpty())
