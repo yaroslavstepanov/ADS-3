@@ -5,16 +5,15 @@ using namespace std;
 
 int prior(char ch)
 {
-    switch (ch)
-    {
-    case '(': return 0;
-    case ')': return 1;
-    case '+': return 2;
-    case '-': return 2;
-    case '*': return 3;
-    case '/': return 3;
-    default: return -1;
-    }
+switch (ch)
+{
+case '(': return 0;
+case ')': return 1;
+case '+': return 2;
+case '*': return 3;
+case '/': return 3;
+default: return -1;
+}
 }
 
 string infx2pstfx(string inf) {
@@ -25,9 +24,9 @@ char top = 0;
 TStack <char> stackCh;
 while (ch) {
 int prior;
-prior = priority(ch);
+prior = prior(ch);
 if (prior > -1) {
-if ((prior == 0 || prior > priority(top) ||
+if ((prior == 0 || prior > prior(top) ||
 stackCh.isEmpty()) && ch != ')') {
 if (stackCh.isEmpty())
 top = ch;
@@ -42,7 +41,7 @@ stackCh.pop();
 if (stackCh.isEmpty())
 top = 0;
 } else {
-while (!stackCh.isEmpty() && priority(stackCh.get()) >= prior) {
+while (!stackCh.isEmpty() && prior(stackCh.get()) >= prior) {
 pfx.push_back(stackCh.get());
 pfx.push_back(' ');
 stackCh.pop();
